@@ -1,0 +1,16 @@
+{
+  "name": "multiplayer",
+  "version": "1.0.0",
+  "description": "tes game multiplayer",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "azern32",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/azern32/multiplayer/issues"
+  },
+  "homepage": "https://github.com/azern32/multiplayer#readme"
+}
