@@ -1,13 +1,25 @@
-const http = require('http');
-const hostname = '127.0.0.1';
-const port = 3000;
+const express = require('express');
+const app = express();
+const serv = require('http').Server(app);
+const io = require('socket.io')(serv,{})
 
-const server = http.createServer((req, res)=>{
-    res.statusCode = 200;
-    res.setHeader('Content-Type','text/plain')
-    res.end('Anjing')
+
+app.get('/', (req, res)=>{
+    res.sendFile(__dirname + '/client/index.html')
 })
+app.use('/client', express.static(__dirname+ '/client'))
+serv.listen(3000)
+console.log(`Server started on ${Date()}`)
 
-server.listen(port, hostname, ()=>{
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
+
+io.sockets.on('connection',(a)=>{
+    console.log('socket connect')
+
+    a.on('pesan', (data)=>{
+        console.log('pesannya :' + data.msg)
+    })
+
+    a.emit('serverMsg',{
+        msg:'sama, cuma tes juga'
+    })
+})
